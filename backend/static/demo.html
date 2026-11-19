@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Ed – Widget Preview</title>
+  <style>
+    :root { --ink: #0f172a; --muted: #64748b; --line: #e2e8f0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: var(--ink); }
+    header { background: #0b0b0b; color: #facc15; padding: 18px 28px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .switcher { display: flex; gap: 8px; }
+    .switcher a { font-size: 13px; font-weight: 600; text-decoration: none; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(250,204,21,.5); color: #facc15; }
+    .switcher a.active { background: #facc15; color: #111; }
+    main { max-width: 820px; margin: 48px auto; padding: 0 20px 80px; }
+    h1 { font-size: 30px; margin: 0 0 8px; letter-spacing: -.5px; }
+    .sub { color: var(--muted); margin: 0 0 28px; font-size: 15px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }
+    .card h2 { font-size: 15px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); }
+    ol, ul { margin: 0; padding-left: 20px; line-height: 1.9; font-size: 14.5px; }
+    code { background: #f1f5f9; border: 1px solid var(--line); padding: 2px 6px; border-radius: 6px; font-size: 13px; }
+    .hint { margin-top: 18px; font-size: 13px; color: var(--muted); }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span>Quick Ed Solutions</span>
+    <span class="switcher">
+      <a id="darkLink" href="?theme=dark">Dark (brand)</a>
+      <a id="lightLink" href="?theme=light">Light (Microsoft style)</a>
+    </span>
+  </header>
+
+  <main>
+    <h1>Chat widget preview</h1>
+    <p class="sub"><span class="dot"></span>Backend is live. This page simulates your website — the widget is added with one script tag.</p>
+
+    <div class="card">
+      <h2>Try this now</h2>
+      <ol>
+        <li>Click the yellow button in the bottom-right corner.</li>
+        <li>Click a quick-reply chip, e.g. <em>"Python course fee?"</em>.</li>
+        <li>Type <code>who teaches java</code> and press Enter.</li>
+        <li>Ask a follow-up: <code>and python?</code> — it should keep context.</li>
+        <li>Type <code>how much is the data analytics course</code>.</li>
+        <li>Type <code>do you teach cyber security</code> — it must refuse, not invent.</li>
+        <li>Watch the <code>0 / 500</code> counter while typing.</li>
+        <li>Use the <strong>–</strong> (minimize) and <strong>×</strong> (close) icons, then reopen.</li>
+        <li>Refresh the page — chat history resets (it lives in the tab only).</li>
+      </ol>
+      <p class="hint">The widget is isolated in Shadow DOM, so your site's CSS cannot break it.</p>
+    </div>
+
+    <div class="card">
+      <h2>Integration (later)</h2>
+      <ul>
+        <li>One script tag, no build step, works on WordPress, Shopify, plain HTML or React.</li>
+        <li>Options: <code>data-theme</code>, <code>data-accent</code>, <code>data-title</code>, <code>data-api</code>.</li>
+        <li>Requires the backend to be deployed with HTTPS and your domain in CORS.</li>
+      </ul>
+    </div>
+  </main>
+
+  <script>
+    var theme = new URLSearchParams(location.search).get("theme") === "light" ? "light" : "dark";
+    document.getElementById(theme === "light" ? "lightLink" : "darkLink").classList.add("active");
+    var s = document.createElement("script");
+    s.src = "/static/widget.js";
+    s.dataset.api = location.origin;
+    s.dataset.theme = theme;
+    s.dataset.title = "Quick Ed Assistant";
+    s.dataset.subtitle = "Online";
+    s.dataset.accent = "#facc15";
+    document.body.appendChild(s);
+  </script>
+</body>
+</html>

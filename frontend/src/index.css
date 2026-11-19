@@ -1,0 +1,48 @@
+:root {
+  --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --c-crimson: #a31c1b;
+  --c-crimson-bright: #d92332;
+  --c-bg: #050b08;
+  --c-border: rgba(255, 255, 255, 0.1);
+  --c-border-subtle: rgba(255, 255, 255, 0.06);
+  --c-text-primary: #f5f7f6;
+  --c-text-secondary: #94a3a0;
+  --c-text-muted: #6b7b76;
+  font-family: var(--font-body);
+  color: var(--c-text-primary);
+  background: var(--c-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--c-crimson-bright);
+  outline-offset: 3px;
+}
+
+.chatbot-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 70% 60% at 90% 10%, rgba(163, 28, 27, 0.16), transparent 65%),
+    radial-gradient(ellipse 70% 60% at 5% 90%, rgba(16, 27, 22, 0.8), transparent 70%),
+    linear-gradient(180deg, #050b08 0%, #0b1712 50%, #050b08 100%);
+}
